@@ -28,24 +28,19 @@ for row in scrape_results_reader:
     duplicate = 'No'
     comment_count = len(comment)
     area_comment_count = len(area_comment)
-    for i in area_comment:
-        if i in area_comment:
-            duplicate = 'Yes'
-            print(duplicate)
+
+    if comment == []:
+        comment = None
+    else:
+        comment = ' | '.join(comment)
+    
+    if area_comment == []:
+        area_comment = None
+    else:
+        area_comment = '|'.join(area_comment)
 
 
-    # if comment == []:
-    #     comment = None
-    # else:
-    #     comment = ' | '.join(comment)
-    #
-    # if area_comment == []:
-    #     area_comment = None
-    # else:
-    #     area_comment = '|'.join(area_comment)
-
-
-    clean_data.writerow([url, comment,comment_count,area_comment,area_comment_count,duplicate])
+    clean_data.writerow([url, comment,comment_count,area_comment,area_comment_count])
 
 
 scrape_results.close()
